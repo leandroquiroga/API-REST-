@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import environment from "../configuration";
-import { logger } from '../utilities/index';
+import { logger } from '../utilities/logger';
 
 export const dbConnect = async (): Promise<void> => {
   try {
