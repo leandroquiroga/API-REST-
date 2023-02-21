@@ -1,11 +1,9 @@
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config()
 
-import server from './server/server';
 import environment from './configuration';
-import { logger } from './utilities';
-
-
+import server from './server/server';
+import { logger } from './utilities/logger';
 
 server.listen(environment.PORT, () => {
   (environment.PORT)

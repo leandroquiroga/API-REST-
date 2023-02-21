@@ -2,10 +2,23 @@
   "compilerOptions": {
     "module": "CommonJS",
     "esModuleInterop": true,
-    "target": "es6",
+    "target": "ES2017",
     "moduleResolution": "node",
     "sourceMap": true,
+    "types": ["jest", "node"],
     "outDir": "dist"
   },
-  "lib": ["es2015"]
+    "include": [
+      "src/**/*",
+      "__tests__/**/*"
+    ],
 }
+
+// "compilerOptions": {
+//   "module": "CommonJS",
+//   "esModuleInterop": true,
+//   "target": "ES2017",
+//   "moduleResolution": "node",
+//   "sourceMap": true,
+//   "outDir": "dist"
+// },
