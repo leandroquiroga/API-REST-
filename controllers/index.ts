@@ -1,22 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Request, Response } from 'express';
-import { logger } from '../utilities';
+import { Request, Response, NextFunction } from 'express';
 import { usersDAO } from '../dao/index';
 
-export const getUser = async (req: Request, res: Response) => {
+export const getUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const response = await usersDAO.getAll();
+    const limit = Number(req.query.limit);
+    const from = Number(req.query.from);
+
+    const response = await usersDAO.getAll(limit, from);
     res.status(200).json({
       status: true,
       code: 200,
       users: response,
     });
   } catch (err: any) {
-    logger.error(err);
+    next(err);
   }
 };
 
-export const getUserById = async (req: Request, res: Response) => {
+export const getUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { id } = req.params;
     const response = await usersDAO.getOneByID(id);
@@ -26,11 +36,15 @@ export const getUserById = async (req: Request, res: Response) => {
       user: response,
     });
   } catch (err: any) {
-    logger.error(err);
+    next(err);
   }
 };
 
-export const postUsers = async (req: Request, res: Response) => {
+export const postUsers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const data = req.body;
   try {
     const response = await usersDAO.save(data);
@@ -41,30 +55,38 @@ export const postUsers = async (req: Request, res: Response) => {
       user: response,
     });
   } catch (err: any) {
-    logger.error(err);
+    next(err);
   }
 };
 
-export const updateUser = async (req: Request, res: Response) => {
+export const updateUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
-  const payload = req.body;
 
   try {
-    if (!payload)
-      return res.status(400).json({
-        message: 'Es obligatorio al menos un dato para editar el usuario',
+    if (req.body) {
+      await usersDAO.updateOne(id, req.body);
+      res.status(200).json({
+        message: 'Se han actualizado su datos correctamente.',
       });
+    }
 
-    await usersDAO.updateOne(id, payload);
-    res.status(200).json({
-      message: 'Se han actualizado su datos correctamente.',
+    return res.status(400).json({
+      message: 'Es obligatorio al menos un dato para editar el usuario',
     });
   } catch (err: any) {
-    logger.error(err);
+    next(err);
   }
 };
 
-export const deleteUser = async (req: Request, res: Response) => {
+export const deleteUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
 
   try {
@@ -73,6 +95,6 @@ export const deleteUser = async (req: Request, res: Response) => {
       message: 'El usuario se ha eliminado correctamente',
     });
   } catch (err: any) {
-    logger.error(err);
+    next(err);
   }
 };
