@@ -11,3 +11,12 @@ export interface User {
   email: string;
   username: string;
 }
+
+export interface UserResponse {
+  name: string;
+  lastname: string;
+  age: number;
+  email: string;
+  username: string;
+  id: string;
+}
