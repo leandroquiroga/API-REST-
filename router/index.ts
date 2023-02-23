@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import { getUser, postUsers, updateUser } from '../controllers';
+import { getUser, postUsers, updateUser, deleteUser, getUserById } from '../controllers';
 import { validator } from '../utilities/custom.validator';
-import { deleteUser, getUserById } from '../controllers/index';
 
 const router = Router();
 
