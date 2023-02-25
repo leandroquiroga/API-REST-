@@ -8,6 +8,7 @@ const createConnection = async (): Promise<MongoMemoryServer> =>
 
 // Connect to the in-memory database.
 const connectDatabase = async (): Promise<void> => {
+  mongoose.set('strictQuery', false);
   const uri: string = (await createConnection()).getUri();
   await mongoose.connect(uri, { dbName: 'User' });
   logger.info('Database connect');
