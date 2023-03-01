@@ -7,7 +7,6 @@ export const usersDAO = {
   getAll: (limit?: number, from?: number) => {
     if(limit && from) 
       return userModel.find().skip(from).limit(limit);
-    
     return userModel.find();
   },
   getOneByID: (id: string) => userModel.findById(id),
