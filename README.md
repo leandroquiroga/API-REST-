@@ -35,7 +35,8 @@ En esta seccion podemos ver la logica de la aplicacion es la encargada de comuni
 ### Modelo: 
 Estructura del modelo de nuestra bases de datos, contiene un bloque de codigo en la que permite decirle a la respuesta de la mongoDB que se reemplaze el __id por id y que no aparezca el _v
 
-/* Insertar imagen toJSON_method*/
+![toJSON_method](https://user-images.githubusercontent.com/80013958/223126110-fa3e88fd-c99a-42ba-a145-64d95e3304cd.png)
+
 
 ### Configuraciones: 
 En la configuraciones se encuentran todos los environment. 
@@ -52,7 +53,8 @@ Los tests se crearon con Jest para los test sencillos, se utilizo Supertest para
   
   * models: Se testea la creacion del modelo. 
 
-/* Insertar imagenes tests */
+![tests](https://user-images.githubusercontent.com/80013958/223126159-593cd9e3-fc90-4774-8462-8e787d0fe31d.png)
+
 # ACLARACION IMPORTANTE ⛔️
 Esta API se realizo en base al aprendizaje del uso de nuevas herramientas.
 
